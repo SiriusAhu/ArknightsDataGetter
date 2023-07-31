@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+OPERATOR_CLASS = ["先锋", "狙击", "医疗", "术师", "近卫", "重装", "辅助", "特种"]
 
 
 def _parse_webpage(link):
@@ -65,6 +66,18 @@ def _get_info_table_4(table):
     for td in tds:
         range_amount.append(len(td.find_all("use")))
     return range_amount
+
+
+def _get_info_table_5(div):
+    """获取信息“职业”"""
+    # 获取这个div中a的text值，之后尝试在列表中寻找对应的值
+    # 如果表中的某个值在text的中出现，就返回这个值
+    # 如果没有，assert Failed
+    text = div.text
+    for i in OPERATOR_CLASS:
+        if i in text:
+            return i
+    assert False, "职业信息获取失败"
 
 # endregion
 
