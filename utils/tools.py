@@ -87,8 +87,11 @@ def change_column(df, column: str, c: int):
     将df中的column列向前/向后移动c列
     df: 要修改的DataFrame
     column: 要修改的列名
-    line: 要修改的列名的位置
+    c: 调换后的位置
     return: 修改后的df
     """
+    if c < 0:
+        # 倒数第c列
+        c = df.shape[1] + c
     df.insert(c, column, df.pop(column))
     return df

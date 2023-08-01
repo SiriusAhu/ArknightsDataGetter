@@ -3,13 +3,13 @@ import pandas as pd
 
 
 def _get_info_date_div(div):
-    """获取该页面下的干员名字和上线时间"""
+    """获取该页面下的干员名称和上线时间"""
     names = []
     rarities = []
     dates = []
     # 找到tbody，信息在里面的tr中
     tbody = div.find_all("tbody")[0]
-    # 将每个tr中的前3个td的内容分别存为干员名字、稀有度、上线时间
+    # 将每个tr中的前3个td的内容分别存为干员名称、稀有度、上线时间
     tr = tbody.find_all("tr")
     for i in range(1, len(tr)):
         td = tr[i].find_all("td")
